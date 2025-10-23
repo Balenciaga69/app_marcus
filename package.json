@@ -1,0 +1,20 @@
+﻿{
+  "name": "app_marcus",
+  "version": "1.0.0",
+  "description": "Modern fullstack application with NestJS backend",
+  "private": true,
+  "scripts": {
+    "backend:dev": "cd backend && npm run start:dev",
+    "backend:build": "cd backend && npm run build",
+    "backend:test": "cd backend && npm test",
+    "backend:lint": "cd backend && npm run lint"
+  },
+  "keywords": [
+    "fullstack",
+    "nestjs",
+    "backend",
+    "frontend"
+  ],
+  "author": "",
+  "license": "ISC"
+}
