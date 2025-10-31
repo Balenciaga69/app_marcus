@@ -1,0 +1,8 @@
+{
+  "preset": "@shelf/jest-mongodb",
+  "testEnvironment": "node",
+  "globalSetup": "./globalSetup.js",
+  "globalTeardown": "./globalTeardown.js",
+  "testTimeout": 30000,
+  "ignoreDeprecations": "none"
+}
