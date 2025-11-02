@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { Order } from './domain/order/order.entity';
-import { User } from './domain/user/user.entity';
-import { Payment } from './domain/payment/payment.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Poll } from './entities/poll.entity';
+import { PollOption } from './entities/poll-option.entity';
+import { Vote } from './entities/vote.entity';
 
 @Module({
   imports: [
@@ -19,13 +17,11 @@ import { Payment } from './domain/payment/payment.entity';
         username: configService.get<string>('DB_USERNAME', 'user'),
         password: configService.get<string>('DB_PASSWORD', 'password'),
         database: configService.get<string>('DB_DATABASE', 'db'),
-        entities: [Order, User, Payment], // 註冊 Entity
+        entities: [Poll, PollOption, Vote], // 註冊 Entity
         synchronize: true, // 開發階段自動同步 schema（生產環境設 false）
       }),
       inject: [ConfigService],
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

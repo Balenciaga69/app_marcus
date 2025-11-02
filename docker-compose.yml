@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  db:
+    container_name: marcus-db
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: marcus_db
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpwd
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+      DB_HOST: marcus-db
+      DB_PORT: 5432
+      DB_USERNAME: pguser
+      DB_PASSWORD: pgpwd
+      DB_DATABASE: marcus_db
+      NODE_ENV: production
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    command: ["node", "dist/main.js"]
+volumes:
+  db_data:
