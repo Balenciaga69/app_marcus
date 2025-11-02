@@ -28,9 +28,12 @@ jobs:
         cache: 'pnpm' # 啟用 pnpm 快取
         cache-dependency-path: backend/pnpm-lock.yaml # 依賴快取路徑
 
+    - name: Install pnpm # 安裝 pnpm
+      run: npm install -g pnpm
+
     - name: Install dependencies # 安裝後端依賴
       working-directory: ./backend
-      run: npm ci
+      run: pnpm install
 
     - name: Lint # 執行程式碼檢查
       working-directory: ./backend
