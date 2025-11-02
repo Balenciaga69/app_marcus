@@ -25,8 +25,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm' # 啟用 npm 快取
-        cache-dependency-path: backend/package-lock.json # 依賴快取路徑
+        cache: 'pnpm' # 啟用 pnpm 快取
+        cache-dependency-path: backend/pnpm-lock.yaml # 依賴快取路徑
 
     - name: Install dependencies # 安裝後端依賴
       working-directory: ./backend
