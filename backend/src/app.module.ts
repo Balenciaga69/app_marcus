@@ -1,14 +1,18 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PollOption } from './entities/poll-option.entity';
 import { Vote } from './entities/vote.entity';
 import { Poll } from './entities/poll.entity';
 import { PollModule } from './modules/poll/poll.module';
+import { HealthModule } from './modules/health/health.module';
+import { LoggerService } from './common/logger/logger.service';
+import { RequestIdMiddleware } from './common/middleware/request-id.middleware';
 
 @Module({
   imports: [
     PollModule,
+    HealthModule,
     ConfigModule.forRoot(), // 載入 .env
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -25,5 +29,11 @@ import { PollModule } from './modules/poll/poll.module';
       inject: [ConfigService],
     }),
   ],
+  providers: [LoggerService],
+  exports: [LoggerService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestIdMiddleware).forRoutes('*');
+  }
+}

@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { INestApplication } from '@nestjs/common';
+import { LoggingInterceptor } from './common/logger/logging.interceptor';
+import { LoggerService } from './common/logger/logger.service';
 
 function setupCors(app: INestApplication<any>) {
   app.enableCors({
@@ -12,6 +14,7 @@ function setupCors(app: INestApplication<any>) {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   setupCors(app);
+  app.useGlobalInterceptors(new LoggingInterceptor(app.get(LoggerService)));
   await app.listen(process.env.PORT ?? 3000);
 }
 
