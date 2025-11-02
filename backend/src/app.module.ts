@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Poll } from './entities/poll.entity';
 import { PollOption } from './entities/poll-option.entity';
 import { Vote } from './entities/vote.entity';
+import { Poll } from './entities/poll.entity';
+import { PollModule } from './modules/poll/poll.module';
 
 @Module({
   imports: [
+    PollModule,
     ConfigModule.forRoot(), // 載入 .env
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
