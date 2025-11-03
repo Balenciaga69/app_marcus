@@ -1,17 +1,19 @@
-import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PollOption } from './entities/poll-option.entity';
-import { Vote } from './entities/vote.entity';
-import { Poll } from './entities/poll.entity';
-import { PollModule } from './modules/poll/poll.module';
-import { HealthModule } from './modules/health/health.module';
 import { LoggerService } from './common/logger/logger.service';
 import { RequestIdMiddleware } from './common/middleware/request-id.middleware';
+import { PollOption } from './entities/poll-option.entity';
+import { Poll } from './entities/poll.entity';
+import { Vote } from './entities/vote.entity';
+import { HealthModule } from './modules/health/health.module';
+import { PollOptionModule } from './modules/poll-option/poll-option.module';
+import { PollModule } from './modules/poll/poll.module';
 
 @Module({
   imports: [
     PollModule,
+    PollOptionModule,
     HealthModule,
     ConfigModule.forRoot(), // 載入 .env
     TypeOrmModule.forRootAsync({
