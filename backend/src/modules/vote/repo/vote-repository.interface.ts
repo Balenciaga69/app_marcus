@@ -4,9 +4,9 @@ import { Vote } from '../../../entities/vote.entity';
 
 export interface IVoteRepository {
   createVote(dto: CreateVoteDto): Promise<Vote>;
-  findById(id: number): Promise<Vote | null>;
-  findByPollId(pollId: number): Promise<Vote[]>;
+  findById(id: string): Promise<Vote | null>;
+  findByPollId(pollId: string): Promise<Vote[]>;
   findByFingerprint(fingerprint: string): Promise<Vote[]>;
   updateVote(dto: UpdateVoteDto): Promise<Vote>;
-  deleteVote(id: number): Promise<void>;
+  deleteVote(id: string): Promise<void>;
 }

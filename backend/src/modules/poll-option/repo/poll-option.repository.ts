@@ -21,7 +21,7 @@ export class PollOptionRepository implements IPollOptionRepository {
     return this.repo.findOne({ where: { id } });
   }
 
-  async findByPollId(pollId: number): Promise<PollOption[]> {
+  async findByPollId(pollId: string): Promise<PollOption[]> {
     return this.repo.find({ where: { poll: { id: pollId } }, relations: ['poll'] });
   }
 }

@@ -15,7 +15,7 @@ export class PollService {
     return await this.pollRepository.findAll();
   }
 
-  async findById(id: number): Promise<Poll | null> {
+  async findById(id: string): Promise<Poll | null> {
     return await this.pollRepository.findById(id);
   }
 
@@ -23,11 +23,11 @@ export class PollService {
     return await this.pollRepository.create(createPollDto);
   }
 
-  async update(id: number, updatePollDto: UpdatePollDto): Promise<Poll> {
+  async update(id: string, updatePollDto: UpdatePollDto): Promise<Poll> {
     return await this.pollRepository.update(id, updatePollDto);
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     return await this.pollRepository.delete(id);
   }
 }

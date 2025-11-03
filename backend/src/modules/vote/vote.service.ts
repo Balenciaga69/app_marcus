@@ -11,11 +11,11 @@ export class VoteService {
     return this.voteRepo.createVote(dto);
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     return this.voteRepo.findById(id);
   }
 
-  async findByPoll(pollId: number) {
+  async findByPoll(pollId: string) {
     return this.voteRepo.findByPollId(pollId);
   }
 
@@ -27,7 +27,7 @@ export class VoteService {
     return this.voteRepo.updateVote(dto);
   }
 
-  async delete(id: number) {
+  async delete(id: string) {
     return this.voteRepo.deleteVote(id);
   }
 }

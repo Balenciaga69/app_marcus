@@ -18,11 +18,11 @@ export class VoteRepository implements IVoteRepository {
     return this.repo.save(entity);
   }
 
-  async findById(id: number): Promise<Vote | null> {
+  async findById(id: string): Promise<Vote | null> {
     return this.repo.findOne({ where: { id } });
   }
 
-  async findByPollId(pollId: number): Promise<Vote[]> {
+  async findByPollId(pollId: string): Promise<Vote[]> {
     return this.repo.find({ where: { poll: { id: pollId } }, relations: ['poll'] });
   }
 
@@ -38,7 +38,7 @@ export class VoteRepository implements IVoteRepository {
     return updated;
   }
 
-  async deleteVote(id: number): Promise<void> {
+  async deleteVote(id: string): Promise<void> {
     await this.repo.delete(id);
   }
 }

@@ -9,12 +9,14 @@ import { Vote } from './entities/vote.entity';
 import { HealthModule } from './modules/health/health.module';
 import { PollOptionModule } from './modules/poll-option/poll-option.module';
 import { PollModule } from './modules/poll/poll.module';
+import { VoteModule } from './modules/vote/vote.module';
 
 @Module({
   imports: [
     PollModule,
     PollOptionModule,
     HealthModule,
+    VoteModule,
     ConfigModule.forRoot(), // 載入 .env
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

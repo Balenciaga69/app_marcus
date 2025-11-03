@@ -1,9 +1,9 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsNotEmpty } from 'class-validator';
 
 export class CreatePollOptionDto {
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  pollId: number;
+  pollId: string;
 
   @IsString()
   @IsNotEmpty()

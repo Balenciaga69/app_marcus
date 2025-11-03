@@ -1,10 +1,15 @@
-import { IsNotEmpty, IsNumber } from 'class-validator';
+import { IsString, IsOptional, IsNotEmpty } from 'class-validator';
 
 export class UpdateVoteDto {
-  @IsNumber()
+  @IsString()
   @IsNotEmpty()
-  id: number;
+  id: string;
 
-  @IsNumber()
-  option_id?: number;
+  @IsString()
+  @IsOptional()
+  optionId?: string;
+
+  @IsString()
+  @IsOptional()
+  fingerprint?: string;
 }

@@ -13,12 +13,12 @@ export class VoteController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.voteService.findOne(id);
   }
 
   @Get()
-  findByPoll(@Query('pollId') pollId: number) {
+  findByPoll(@Query('pollId') pollId: string) {
     return this.voteService.findByPoll(pollId);
   }
 
@@ -28,12 +28,12 @@ export class VoteController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() dto: UpdateVoteDto) {
+  update(@Param('id') id: string, @Body() dto: UpdateVoteDto) {
     return this.voteService.update({ ...dto, id });
   }
 
   @Delete(':id')
-  delete(@Param('id') id: number) {
+  delete(@Param('id') id: string) {
     return this.voteService.delete(id);
   }
 }

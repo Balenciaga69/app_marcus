@@ -1,11 +1,15 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsString, IsNotEmpty } from 'class-validator';
 
 export class CreateVoteDto {
-  @IsUUID()
+  @IsString()
   @IsNotEmpty()
-  pollOptionId: string;
+  pollId: string;
 
   @IsString()
   @IsNotEmpty()
-  fingerprint: string; // 用戶指紋
+  optionId: string;
+
+  @IsString()
+  @IsNotEmpty()
+  fingerprint: string;
 }
