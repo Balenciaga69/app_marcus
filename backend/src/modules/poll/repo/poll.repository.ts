@@ -17,7 +17,7 @@ export class PollRepository implements PollRepositoryInterface {
     return this.repo.find();
   }
 
-  async findById(id: number): Promise<Poll | null> {
+  async findById(id: string): Promise<Poll | null> {
     return this.repo.findOneBy({ id }) ?? null;
   }
 
@@ -26,12 +26,12 @@ export class PollRepository implements PollRepositoryInterface {
     return this.repo.save(entity);
   }
 
-  async update(id: number, poll: Partial<Poll>): Promise<Poll> {
+  async update(id: string, poll: Partial<Poll>): Promise<Poll> {
     await this.repo.update(id, poll);
     return this.repo.findOneByOrFail({ id });
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await this.repo.delete(id);
   }
 }

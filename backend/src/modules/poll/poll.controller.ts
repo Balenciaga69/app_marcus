@@ -13,8 +13,8 @@ export class PollController {
   }
 
   @Get(':id')
-  async findById(@Param('id') id: number) {
-    return await this.pollService.findById(Number(id));
+  async findById(@Param('id') id: string) {
+    return await this.pollService.findById(id);
   }
 
   @Post()
@@ -23,13 +23,13 @@ export class PollController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() updatePollDto: UpdatePollDto) {
-    return await this.pollService.update(Number(id), updatePollDto);
+  async update(@Param('id') id: string, @Body() updatePollDto: UpdatePollDto) {
+    return await this.pollService.update(id, updatePollDto);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number) {
-    await this.pollService.delete(Number(id));
+  async delete(@Param('id') id: string) {
+    await this.pollService.delete(id);
     return { message: 'Poll deleted' };
   }
 }

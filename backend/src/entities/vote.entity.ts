@@ -1,13 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, Index } from 'typeorm';
+import { Entity, Column, ManyToOne, Index } from 'typeorm';
 import { PollOption } from './poll-option.entity';
 import { Poll } from './poll.entity';
+import { BaseEntity } from './base.entity';
 
 @Entity()
-@Index(['poll_id', 'fingerprint'], { unique: false })
-export class Vote {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+@Index(['poll', 'fingerprint'], { unique: false })
+export class Vote extends BaseEntity {
   @ManyToOne(() => Poll)
   poll: Poll;
 
@@ -15,20 +13,8 @@ export class Vote {
   option: PollOption;
 
   @Column()
-  poll_id: number;
-
-  @Column()
-  option_id: number;
-
-  @Column()
   fingerprint: string;
 
   @Column({ default: true })
   is_active: boolean;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 }

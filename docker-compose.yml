@@ -18,14 +18,14 @@ services:
     environment:
       DB_HOST: marcus-db
       DB_PORT: 5432
-      DB_USERNAME: pguser
-      DB_PASSWORD: pgpwd
+      DB_USERNAME: pguser # 這些理論上應該是從環境變數或秘密管理中取得
+      DB_PASSWORD: pgpwd # 這些理論上應該是從環境變數或秘密管理中取得
       DB_DATABASE: marcus_db
       NODE_ENV: production
     ports:
       - '3000:3000'
     depends_on:
       - db
-    command: ["node", "dist/main.js"]
+    command: ['node', 'dist/main.js']
 volumes:
   db_data:

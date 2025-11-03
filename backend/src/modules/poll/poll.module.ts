@@ -8,13 +8,7 @@ import { Poll } from '../../entities/poll.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Poll])],
   controllers: [PollController],
-  providers: [
-    PollService,
-    {
-      provide: 'PollRepositoryInterface',
-      useClass: PollRepository,
-    },
-  ],
+  providers: [PollService, PollRepository],
   exports: [PollService],
 })
 export class PollModule {}
