@@ -34,7 +34,7 @@ export class VoteRepository implements IVoteRepository {
     const { id, ...updateData } = dto;
     await this.repo.update(id, updateData);
     const updated = await this.findById(id);
-    if (!updated) throw new Error('Vote not found');
+    if (!updated) throw new Error('Vote not found'); //TODO: 客製化 ERROR
     return updated;
   }
 

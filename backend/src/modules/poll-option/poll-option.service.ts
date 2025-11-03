@@ -14,7 +14,7 @@ export class PollOptionService {
     return this.pollOptionRepo.findById(id);
   }
 
-  async findByPoll(pollId: number) {
+  async findByPoll(pollId: string) {
     return this.pollOptionRepo.findByPollId(pollId);
   }
 }

@@ -17,7 +17,7 @@ export class PollOptionController {
   }
 
   @Get()
-  findByPoll(@Query('pollId') pollId: number) {
+  findByPoll(@Query('pollId') pollId: string) {
     return this.pollOptionService.findByPoll(pollId);
   }
 }
