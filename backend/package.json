@@ -17,7 +17,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "k6:smoke": "k6 run k6/smoke.js",
+    "k6:ramp": "k6 run k6/ramp.js",
+    "k6:flow": "k6 run k6/flow.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
