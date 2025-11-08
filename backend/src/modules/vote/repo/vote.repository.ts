@@ -23,16 +23,19 @@ export class VoteRepository implements IVoteRepository {
   }
 
   async findByPollId(pollId: string): Promise<Vote[]> {
-    return this.repo.find({ where: { poll: { id: pollId } }, relations: ['poll'] });
+    return this.repo.find({ where: { poll: { id: pollId }, is_active: true }, relations: ['poll'] });
   }
 
   async findByFingerprint(fingerprint: string): Promise<Vote[]> {
-    return this.repo.find({ where: { fingerprint } });
+    return this.repo.find({ where: { fingerprint, is_active: true } });
   }
 
   async updateVote(dto: UpdateVoteDto): Promise<Vote> {
-    const { id, ...updateData } = dto;
-    await this.repo.update(id, updateData);
+    const { id, is_active } = dto;
+    if (typeof is_active !== 'boolean') {
+      throw new Error('Only is_active can be updated');
+    }
+    await this.repo.update(id, { is_active });
     const updated = await this.findById(id);
     if (!updated) throw new Error('Vote not found'); //TODO: 客製化 ERROR
     return updated;
