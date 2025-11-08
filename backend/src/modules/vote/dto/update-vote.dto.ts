@@ -1,15 +1,12 @@
-import { IsString, IsOptional, IsNotEmpty } from 'class-validator';
+import { IsArray, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UpdateVoteDto {
   @IsString()
   @IsNotEmpty()
   id: string;
 
-  @IsString()
+  @IsArray()
+  @IsString({ each: true })
   @IsOptional()
-  optionId?: string;
-
-  @IsString()
-  @IsOptional()
-  fingerprint?: string;
+  optionIds?: string[];
 }
