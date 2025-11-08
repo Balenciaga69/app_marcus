@@ -1,11 +1,12 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsArray } from 'class-validator';
 
 export class CreateVoteDto {
   @IsString()
   pollId: string;
 
-  @IsString()
-  optionId: string;
+  @IsArray()
+  @IsString({ each: true })
+  optionIds: string[];
 
   @IsString()
   @IsNotEmpty()

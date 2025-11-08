@@ -14,7 +14,4 @@ export class Vote extends BaseEntity {
 
   @Column()
   fingerprint: string;
-
-  @Column({ default: true })
-  is_active: boolean;
 }
