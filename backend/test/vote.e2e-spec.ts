@@ -24,8 +24,8 @@ describe('Pokemon Vote Integration Test', () => {
     pollId = pollRes.body.id;
 
     // 建立選項
-    for (const label of ['Venusaur', 'Charizard', 'Blastoise']) {
-      const optionRes = await request(app.getHttpServer()).post('/poll-options').send({ pollId, label });
+    for (const text of ['Venusaur', 'Charizard', 'Blastoise']) {
+      const optionRes = await request(app.getHttpServer()).post('/poll-options').send({ pollId, text });
       optionIds.push(optionRes.body.id);
     }
   });
