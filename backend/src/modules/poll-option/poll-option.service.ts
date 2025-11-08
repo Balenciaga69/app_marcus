@@ -7,7 +7,7 @@ export class PollOptionService {
   constructor(private readonly pollOptionRepo: PollOptionRepository) {}
 
   async create(dto: CreatePollOptionDto) {
-    return this.pollOptionRepo.createPollOption(dto);
+    return this.pollOptionRepo.createPollOptions(dto);
   }
 
   async findOne(id: string) {

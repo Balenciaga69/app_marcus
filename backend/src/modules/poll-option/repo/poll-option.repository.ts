@@ -12,9 +12,9 @@ export class PollOptionRepository implements IPollOptionRepository {
     private readonly repo: Repository<PollOption>
   ) {}
 
-  async createPollOption(dto: CreatePollOptionDto): Promise<PollOption> {
-    const entity = this.repo.create(dto);
-    return this.repo.save(entity);
+  async createPollOptions(dto: CreatePollOptionDto): Promise<PollOption[]> {
+    const entities = dto.texts.map((text) => this.repo.create({ poll: { id: dto.pollId }, text }));
+    return this.repo.save(entities);
   }
 
   async findById(id: string): Promise<PollOption | null> {
