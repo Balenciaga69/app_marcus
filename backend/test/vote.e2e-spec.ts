@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { AppModule } from '../src/app.module';
 
 describe('Pokemon Vote Integration Test', () => {
   let app: INestApplication;
   let pollId: string;
-  let optionIds: string[] = [];
+  const optionIds: string[] = [];
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-
+    const optionIds: string[] = [];
     app = moduleFixture.createNestApplication();
     await app.init();
 
